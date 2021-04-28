@@ -1,73 +1,86 @@
-const Guru = require('../models/guru')
+const Guru = require('../models/guru');
 
 exports.getAll = (req, res) => {
-    Guru.find({}, (err, guru) => {
-        if (err) throw err
-        res.status(200).json({
-            status: 'success',
-            data: {
-                guru
-            }
-        })
-    })
-}
+  Guru.find({}, (err, guru) => {
+    if (err) throw err;
+    res.status(200).json({
+      status: 'success',
+      data: {
+        guru,
+      },
+    });
+  });
+};
 
 exports.getById = (req, res) => {
-    const id = req.params.id
+  const {
+    id,
+  } = req.params;
 
-    Guru.findById(id,(err, guru) => {
-        if(err) throw err
+  Guru.findById(id, (err, guru) => {
+    if (err) throw err;
 
-        res.status(200).json({
-            status : 'success',
-            data : {
-                guru
-            }
-        })
-    })
-}
+    res.status(200).json({
+      status: 'success',
+      data: {
+        guru,
+      },
+    });
+  });
+};
 
 exports.create = (req, res) => {
-    const guru = new Guru({ ...req.body })
+  const guru = new Guru({
+    ...req.body,
+  });
 
-    guru.save((err, guru) => {
-        if(err) throw err
-        res.status(201).json({
-            status: 'success',
-            message: 'Data berhasil disimpan',
-            data: {
-                guru
-            }
-        })
-    })
-}
-
+  guru.save((err, guru) => {
+    if (err) throw err;
+    res.status(201).json({
+      status: 'success',
+      message: 'Data berhasil disimpan',
+      data: {
+        guru,
+      },
+    });
+  });
+};
 
 exports.update = (req, res) => {
-    const id = req.params.id
-    Guru.findByIdAndUpdate(id, { ...req.body }, {useFindAndModify:false}, (err, guru) => {
-        if(err) throw err
-        res.status(200).json({
-            status: 'success',
-            message: 'Data berhasil diupdate',
-            data: {
-                guru
-            }
-        })
-    })
-}
+  const {
+    id,
+  } = req.params;
+  Guru.findByIdAndUpdate(id, {
+    ...req.body,
+  }, {
+    useFindAndModify: false,
+  }, (err, guru) => {
+    if (err) throw err;
+    res.status(200).json({
+      status: 'success',
+      message: 'Data berhasil diupdate',
+      data: {
+        guru,
+      },
+    });
+  });
+};
 
 exports.delete = (req, res) => {
-    const id = req.params.id
+  const {
+    id,
+  } = req.params;
 
-    Guru.findByIdAndDelete(id,{useFindAndModify:false},(err,guru)=>{
-        if(err) throw err
-        res.status(200).json({
-            status: 'success',
-            message: 'Data berhasil dihapus',
-            data: {
-                guru
-            }
-        })
-    })
-}
+  Guru.findByIdAndDelete(id, {
+    useFindAndModify: false,
+  }, (err, guru) => {
+    if (err) throw err;
+    res.status(200).json({
+      status: 'success',
+      message: 'Data berhasil dihapus',
+      data: {
+        guru,
+      },
+    });
+  });
+};

@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const { Schema } = mongoose;
 
 const siswaSchema = new Schema({
-    nis: String,
-    nama: String,
-    jenis_kelamin : String,
-    kelas: String
-})
+  nis: String,
+  nama: String,
+  jenis_kelamin: String,
+  kelas: String,
+});
 
-module.exports = mongoose.model('Siswa', siswaSchema)
+module.exports = mongoose.model('Siswa', siswaSchema);
